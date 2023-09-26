@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="styles.css"> 
+    <title>Gerenciador Entrada/Saida</title>
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="banner">
+            <img src="img/fundo.png" alt="y">
+        </div>  
+    </header>
+   
+     <!-- Tabela resumo -->
+     <div class="titulo"><h2>RESUMO MENSAL</h2></div>
+
+     <section class="grdResult">
+         <table class="tblResult" id="resumo_">
+             <tr>
+                 <th class="tblResult2">Data Atual</th>
+                 <th class="tblResult4">Total Serviços</th>
+                 <th class="tblResult5">Total Despesas</th>
+                 <th class="tblResult6">Total Caixa</th>
+             </tr>
+         </table>
+     </section>
+
+    <div class="space_imp"></div>
+    
+   <!-- Tabela serviço -->
+    <div class="titulo"><h2>CADASTRO DE SERVIÇOS</h2></div>
+    <section class="grdItem">
+        <table class="tblItem" id="receita_">
+            <tr>
+                <th class="tblItem1">Id</th>
+                <th class="tblItem2">Descrição Serviços</th>
+                <th class="tblItem3">Data</th>
+                <th class="tblItem4">Valor</th> 
+            </tr>
+        </table>
+    </section>
+
+    <!-- Tabela total da serviços -->
+    <div class="divTotal">
+        <table class="tblTotal">
+            <tr>  
+                <th class="tbltitulo">Total Serviços</th>
+                <th class="tblvalor" id="totalServiço_">R$ 0,00</th>
+            </tr>
+        </table>  
+    </div>
+    
+    <div class="space_imp"></div>
+    
+    <!-- Tabela despesa -->
+    <div class="titulo"><h2>CADASTRO DE DESPESAS</h2></div>
+    <section class="grdItem">
+        <table class="tblItem" id="despesa_">
+            <tr>
+                <th class="tblItem1">Id</th>
+                <th class="tblItem2">Descrição Despesa</th>
+                <th class="tblItem3">Data</th>
+                <th class="tblItem4">Valor</th>
+            </tr>
+        </table>
+    </section>
+    
+    <!-- Tabela total da despesas -->
+    <div class="divTotal">
+        <table class="tblTotal">
+            <tr>
+                <th class="tbltitulo">Total Despesas</th>
+                <th class="tblvalor" id="totalDespesa_">R$ 0,00</th>
+            </tr>
+        </table>  
+    </div>
+
+    <div class="space_imp"></div>
+    <script src="scripts.js"></script>
+    <script>recuperaDadosPOST();</script>
+</body>
+
+</html>
+

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="styles.css"> 
+    <title>Gerenciador Entrada/Saida</title>
+</head>
+
+<body>
+     <!-- Cabeçalho -->
+    <header>
+        <div class="banner">
+            <img src="img/fundo.png" alt="y">
+        </div>  
+        <div class="linha"></div>
+    </header>
+    
+    <div class="divBorda">
+        
+        <span>&nbsp;</span>
+
+        <div id="butons" class="butons">
+            <div id="btn_1" class="button_1" onClick="altera_abs(1);">CADASTRO DE SERVIÇOS</div>
+            <div id="btn_2" class="button_2" onClick="altera_abs(2);">CADASTRO DE DESPESAS</div>
+            <div id="btn_3" class="button_3" onClick="altera_abs(3);">PROCESSAR PERÍODO</div>
+            <div id="btn_4" class="button_4" onClick="altera_abs(4);">PESQUISA DE PEÇAS</div>
+        </div>
+        
+        <div class="abaBorda">
+            <div id="aba_1">
+                
+                <div class="titulo"><h2>CADASTRO DE SERVIÇOS</h2></div>
+
+                <!-- adiciona novo item na grade serviço -->
+                <section class="box">
+                    <input type="text" class="boxDescricao" id="descricaoReceita" placeholder="Descrição do serviço:">
+                    <input type="date" class="boxData" id="dataReceita" placeholder="Data:" value="">
+                    <input type="text" class="boxValor" id="valorReceita" onKeyPress="return(formatMoedaInput(this,'.',',',event))" placeholder="Valor:">
+                    <span onclick="addNovaReceita();" class="btnAdicionar">Adicionar serviço</span>
+                </section>
+
+                <!-- Tabela serviço -->
+                <section class="grdItem">
+                    <table class="tblItem" id="receita">
+                        <tr>
+                            <th class="tblItem0">Status</th>
+                            <th class="tblItem1">Id</th>
+                            <th class="tblItem2">Descrição Serviços</th>
+                            <th class="tblItem3">Data</th>
+                            <th class="tblItem4">Valor</th>
+                            <th class="tblItem5"><img src="img/126468.png" width="15px" height="15px"></th> 
+                        </tr>
+                    </table>
+                </section>
+                
+                <!-- Tabela total da serviços -->
+                <div class="divTotal">
+                    <table class="tblTotal">
+                        <tr>  
+                            <th class="tbltitulo">Total Serviços</th>
+                            <th class="tblvalor" id="totalServiço">R$ 0,00</th>
+                        </tr>
+                    </table>  
+                </div>
+            </div>
+
+            <div id="aba_2" class="esconde_aba">
+
+                <div class="titulo"><h2>CADASTRO DE DESPESAS</h2></div>
+
+                <!-- adiciona novo item na grade despesa -->
+                <section class="box">
+                    <input type="text" class="boxDescricao" id="descricaoDespesa" placeholder="Descrição da despesa:">
+                    <input type="date" class="boxData" id="dataDespesa" placeholder="Data:">
+                    <input type="text" class="boxValor" id="valorDespesa" onKeyPress="return(formatMoedaInput(this,'.',',',event))" placeholder="Valor:">
+                    <span onclick="addNovaDespesa();" class="btnAdicionar">Adicionar despesa</span>
+                </section>
+            
+                <!-- Tabela despesa -->
+                <section class="grdItem">
+                    <table class="tblItem" id="despesa">
+                        <tr>
+                            <th class="tblItem0">Status</th>
+                            <th class="tblItem1">Id</th>
+                            <th class="tblItem2">Descrição Despesa</th>
+                            <th class="tblItem3">Data</th>
+                            <th class="tblItem4">Valor</th>
+                            <th class="tblItem5"><img src="img/126468.png" width="15px" height="15px"></th>
+                        </tr>
+                    </table>
+                </section>
+
+                <!-- Tabela total da despesas -->
+                <div class="divTotal">
+                    <table class="tblTotal">
+                        <tr>
+                            <th class="tbltitulo">Total Despesas</th>
+                            <th class="tblvalor" id="totalDespesa">R$ 0,00</th>
+                        </tr>
+                    </table>  
+                </div>
+            </div>
+
+            <div id="aba_3" class="esconde_aba">
+                
+                <div class="titulo"><h2>PROCESSAR PERÍODO</h2></div>
+
+                <!-- pesquisa dados pelo periodo -->
+                <section class="box">
+                    <input type="date" class="boxData" id="dataInicio" placeholder="Data:" value="">
+                    <input type="date" class="boxData" id="dataFim" placeholder="Data:" value="">
+                    <span onclick="buscaPeriodo();" class="btnAdicionar">Pesquisar periodo</span>
+                    <span>&nbsp;</span>
+                    <span onclick="LimparPesquisa();" class="btnAdicionar">Limpar pesquisa</span>
+                    <span>&nbsp;</span>
+                    <span onclick="processarPeriodo();" class="btnAdicionar">Processar periodo</span>
+                </section>
+                
+                <!-- Tabela Processar periodo -->
+                <section class="grdResult">
+                    <table class="tblResult" id="periodo">
+                        <tr>
+                            <th class="tblResult1">ID</th>
+                            <th class="tblResult2">Data Inicio</th>
+                            <th class="tblResult3">Data Fim</th>
+                            <th class="tblResult4">Total Serviços</th>
+                            <th class="tblResult5">Total Despesas</th>
+                            <th class="tblResult6">Total Caixa</th>
+                            <th class="tblResult7"></th>
+                        </tr>
+                    </table>
+                </section>
+            </div>
+
+            <div id="aba_4" class="esconde_aba">
+                <div class="titulo"><h2>PESQUISA DE PEÇAS NO MERCADO LIVRE</h2></div>
+
+                <!-- adiciona novo item na grade despesa -->
+                <section class="box">
+                    <input type="text" class="boxDescricao" id="query" placeholder="Descrição da pesquisa">
+                    <span onclick="buscaPesquisa();" id="search" class="btnAdicionar">Pesquisar</span>
+                </section>
+            
+                <!-- Tabela despesa -->
+                <section class="grdItem">
+                    <div id="results"></div>
+                </section>
+            </div>
+            <div class="space"></div>
+        </div>
+
+        <br/>
+
+        <div class="linha"></div>
+        <div class="titulo"><h2>RESUMO MENSAL</h2></div>
+        
+         <!-- Tabela resumo -->
+         <section class="grdResult">
+            <table class="tblResult" id="resumo">
+                <tr>
+                    <th class="tblResult2">Data Atual</th>
+                    <th class="tblResult4">Total Serviços</th>
+                    <th class="tblResult5">Total Despesas</th>
+                    <th class="tblResult6">Total Caixa</th>
+                </tr>
+            </table>
+        </section>
+     
+        <div class="space"><div class="linha"></div></div>
+              
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="scripts.js"></script>
+
+        <br/>
+    </div>
+
+    <div class="space_rodap"></div>
+</body>
+
+</html>
+
+
