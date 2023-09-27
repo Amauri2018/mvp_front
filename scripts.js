@@ -606,7 +606,7 @@
   
     let url = 'http://127.0.0.1:5000/receita';
     fetch(url, {
-      method: 'post',
+      method: 'put',
       body: formData
     })
       .then((response) => response.json())
@@ -881,7 +881,7 @@
 
     let url = 'http://127.0.0.1:5000/despesa';
     fetch(url, {
-      method: 'post',
+      method: 'put',
       body: formData
     })
       .then((response) => response.json())
